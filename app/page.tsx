@@ -1,15 +1,35 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight, Instagram, Mail, MapPin } from "lucide-react"
+import { supabase } from "@/lib/supabase/server"
 
 import { Button } from "@/components/ui/button"
 
-export default function Home() {
+export default async function Home() {
+  // Récupérer les photos depuis Supabase
+  const { data: photos, error } = await supabase
+    .from('photos')
+    .select('id, title, description, filename')
+
+  if (error) {
+    console.error('Erreur Supabase :', error.message)
+  }
+
+
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
-      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-black/80 px-4 py-4 backdrop-blur-sm sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-black/80 px-2 py-2 backdrop-blur-sm sm:px-4 ">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight">aR.photo</span>
+          <span className="text-xl font-bold tracking-tight">
+          <Image
+            src="/ar-photo.png"
+            alt="logo"
+            width={150}
+            height={100}
+            className="object-cover"
+            priority
+          />
+          </span>
         </div>
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm font-medium hover:text-white/70">
@@ -49,9 +69,9 @@ export default function Home() {
         </Button>
       </header>
       <main className="flex-1">
-        <section className="relative h-[80vh] w-full">
+        <section className="relative h-[100vh] w-full">
           <Image
-            src="/placeholder.svg?height=1080&width=1920"
+            src="/photo1.jpg?height=1080&width=1920"
             alt="Photo principale"
             fill
             className="object-cover"
@@ -76,35 +96,35 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-12 text-center">Galerie</h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[...Array(9)].map((_, i) => (
-                <Link
-                  key={i}
-                  href={`/photos/${i + 1}`}
-                  className="group relative aspect-square overflow-hidden rounded-lg"
-                >
-                  <Image
-                    src={`/placeholder.svg?height=600&width=600&text=Photo ${i + 1}`}
-                    alt={`Photo ${i + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end p-4">
-                    <span className="font-medium">Voir la photo</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <div className="mt-12 text-center">
-              <Button variant="outline" size="lg">
-                Voir plus de photos
-              </Button>
-            </div>
-          </div>
-        </section>
+      <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <h2 className="text-3xl font-bold text-center mb-12">Galerie</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {photos && photos.length > 0 ? (
+            photos.map((photo) => (
+              <div key={photo.id} className="relative group aspect-square rounded-lg overflow-hidden bg-zinc-900">
+                <Image
+                  src={`https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`}
+                  alt={photo.title} 
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                  <h3 className="text-xl font-semibold">{photo.title}</h3>
+                  <p className="text-sm text-white/80">{photo.description}</p>
+                  <Link href={`/photos/${photo.id}`} className="mt-2 inline-flex items-center text-sm text-yellow-400 hover:underline">
+                    Voir plus <ChevronRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="col-span-full text-center text-white/70">Aucune photo disponible.</p>
+          )}
+        </div>
+      </div>
+    </section>
 
         <section id="categories" className="py-16 bg-zinc-900 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
