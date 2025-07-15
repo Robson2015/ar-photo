@@ -10,6 +10,7 @@ const config: Config = {
 		'lg:grid-cols-2 ',
 		'gap-12',
 		'gap-8',
+		'space-y-6',
 	  ],
     content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
