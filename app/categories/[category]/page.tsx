@@ -5,8 +5,8 @@ import { supabase } from "@/lib/supabase/server"
 
 import { Button } from "@/components/ui/button"
 
-import Header from "@/components/Header"
-import Footer from "@/components/footer"
+import Header from "@/sections/Header"
+import Footer from "@/sections/Footer"
 
 export default async function CategoryPage({
     params,

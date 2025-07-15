@@ -4,12 +4,12 @@ import { ChevronRight, Instagram, Mail, MapPin } from "lucide-react"
 import { supabase } from "@/lib/supabase/server"
 
 import { Button } from "@/components/ui/button"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import Contact from "@/components/contact"
-import About from "@/components/about"
-import Testimonial from "@/components/testimonial"
-import Category from "@/components/category"
+import Header from "@/sections/Header"
+import Footer from "@/sections/Footer"
+import Contact from "@/sections/Contact"
+import About from "@/sections/About"
+import Testimonial from "@/sections/Testimonial"
+import Category from "@/sections/Category"
 
 export default async function Home() {
   // Récupérer les photos depuis Supabase
