@@ -112,6 +112,7 @@ export default async function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
                   <h3 className="text-xl font-semibold">{photo.title}</h3>
+                  <span className="text-sm text-white/70">{photo.category}</span>
                   <p className="text-sm text-white/80">{photo.description}</p>
                   <Link href={`/photos/${photo.id}`} className="mt-2 inline-flex items-center text-sm text-yellow-400 hover:underline">
                     Voir plus <ChevronRight className="ml-1 h-4 w-4" />
