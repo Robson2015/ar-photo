@@ -84,9 +84,7 @@ export default async function Home() {
         </section>
 
         <Category />
-
-        <About />
-        
+        <About />        
         <Testimonial />
 
         <Contact />

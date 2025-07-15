@@ -28,15 +28,16 @@ export default function Category() {
 
   if (error) {
     return <p className="text-red-500">Erreur chargement catégories.</p>
-  }
+  } 
 
   return (
     <section id="categories" className="py-16 bg-zinc-900 px-4 sm:px-6 lg:px-8">
+
       <div className="mx-auto max-w-7xl">
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-12 text-center">
           Catégories
         </h2>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {categories.map((category) => (
             <Link
               key={category.id}
