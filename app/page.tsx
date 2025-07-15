@@ -9,7 +9,7 @@ export default async function Home() {
   // Récupérer les photos depuis Supabase
   const { data: photos, error } = await supabase
     .from('photos')
-    .select('id, title, description, filename')
+    .select('id, title, description, filename, category')
 
   if (error) {
     console.error('Erreur Supabase :', error.message)
