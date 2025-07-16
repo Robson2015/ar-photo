@@ -26,9 +26,9 @@ export default function Header() {
       {/* Menu Desktop */}
       <nav className="hidden md:flex items-center gap-6"> 
         <Link href="/" className="text-sm font-medium hover:text-white/70">Accueil</Link>
-        <Link href="#gallery" className="text-sm font-medium hover:text-white/70">Galerie</Link>
-        <Link href="#about" className="text-sm font-medium hover:text-white/70">À propos</Link>
-        <Link href="#contact" className="text-sm font-medium hover:text-white/70">Contact</Link>
+        <Link href="/gallery" className="text-sm font-medium hover:text-white/70">Galerie</Link>
+        <Link href="/about" className="text-sm font-medium hover:text-white/70">À propos</Link>
+        <Link href="/contact" className="text-sm font-medium hover:text-white/70">Contact</Link>
       </nav>
 
       {/* Réservation Desktop */}
