@@ -18,7 +18,7 @@ export default async function Gallery() {
         <h2 className="text-3xl font-bold text-center mb-12">Galerie</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {photos && photos.length > 0 ? (
-            photos.map((photo) => (
+              photos.slice(0, 12).map((photo) => (
               <div
                 key={photo.id}
                 className="relative group aspect-square rounded-lg overflow-hidden bg-zinc-900"
