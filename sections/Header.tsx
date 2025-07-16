@@ -28,12 +28,11 @@ export default function Header() {
         <Link href="/" className="text-sm font-medium hover:text-white/70">Accueil</Link>
         <Link href="/gallery" className="text-sm font-medium hover:text-white/70">Galerie</Link>
         <Link href="/about" className="text-sm font-medium hover:text-white/70">À propos</Link>
-        <Link href="/contact" className="text-sm font-medium hover:text-white/70">Contact</Link>
       </nav>
 
       {/* Réservation Desktop */}
       <Button variant="outline" size="sm" className="!text-black hidden  md:inline-block">
-       <span className="!text-black">Réserver une séance </span> 
+        <Link href="/contact" className="text-sm font-medium hover:text-white/70"><span className="!text-black">Me contacter </span> </Link>       
       </Button>
 
       {/* Menu Burger Mobile */}
