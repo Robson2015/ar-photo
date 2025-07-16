@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button"
     
 export default function About() {    
     return (
-    <>
-        
+    <>        
         <section id="about" className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">

@@ -24,7 +24,7 @@ export default function Header() {
       </div>
 
       {/* Menu Desktop */}
-      <nav className="hidden md:flex items-center gap-6">
+      <nav className="hidden md:flex items-center gap-6"> 
         <Link href="/" className="text-sm font-medium hover:text-white/70">Accueil</Link>
         <Link href="#gallery" className="text-sm font-medium hover:text-white/70">Galerie</Link>
         <Link href="#about" className="text-sm font-medium hover:text-white/70">À propos</Link>
@@ -32,8 +32,8 @@ export default function Header() {
       </nav>
 
       {/* Réservation Desktop */}
-      <Button variant="outline" size="sm" className="hidden md:inline-block">
-        Réserver une séance
+      <Button variant="outline" size="sm" className="!text-black hidden  md:inline-block">
+       <span className="!text-black">Réserver une séance </span> 
       </Button>
 
       {/* Menu Burger Mobile */}
