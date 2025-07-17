@@ -35,8 +35,8 @@ export default function ContactPage() {
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
       <Header />
-      <main className="flex-grow py-16 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <main className="flex-grow py-20 px-4 sm:px-6 lg:px-8">
+        <div className="mt-6 mx-auto max-w-7xl">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-12 text-center">
             {about.title}
           </h1>

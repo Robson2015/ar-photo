@@ -68,10 +68,11 @@ export default function Header() {
           </button>
         </div>
         <Link href="/" onClick={() => setOpen(false)} className="text-white text-lg">Accueil</Link>
-        <Link href="#gallery" onClick={() => setOpen(false)} className="text-white text-lg">Galerie</Link>
-        <Link href="#about" onClick={() => setOpen(false)} className="text-white text-lg">À propos</Link>
-        <Link href="#contact" onClick={() => setOpen(false)} className="text-white text-lg">Contact</Link>
-        <Button className="mt-6">Réserver une séance</Button>
+        <Link href="/gallery" onClick={() => setOpen(false)} className="text-white text-lg">Galerie</Link>
+        <Link href="/about" onClick={() => setOpen(false)} className="text-white text-lg">À propos</Link>
+        <Button variant="outline" size="sm" className="!text-black hidden  md:inline-block">
+        <Link href="/contact" className="text-sm font-medium hover:text-white/70"><span className="!text-black">Me contacter </span> </Link>       
+      </Button>
       </div>
     </header>
   )

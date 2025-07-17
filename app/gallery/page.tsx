@@ -67,8 +67,8 @@ export default function GalleryPage() {
     <div className="flex min-h-screen flex-col bg-black text-white">
       <Header />
 
-      <main className="px-4 py-16 sm:px-6 lg:px-8 bg-black text-white">
-        <div className="mx-auto max-w-7xl">
+      <main className="px-4 py-20 sm:px-6 lg:px-8 bg-black text-white">
+        <div className="mt-6 mx-auto max-w-7xl">
           <h1 className="text-4xl font-bold text-center mb-6">Galerie complète</h1>
 
           {/* Filtre catégorie */}
