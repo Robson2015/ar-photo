@@ -1,7 +1,12 @@
+// gallery.tsx (ou autre nom de ton composant serveur)
+
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { supabase } from "@/lib/supabase/server"
+
+// ➕ Cette ligne indique à Next.js de revalider les données toutes les 60 secondes
+export const revalidate = 60
 
 export default async function Gallery() {
   const { data: photos, error } = await supabase
@@ -18,7 +23,7 @@ export default async function Gallery() {
         <h2 className="text-3xl font-bold text-center mb-12">Galerie</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {photos && photos.length > 0 ? (
-              photos.slice(0, 12).map((photo) => (
+            photos.slice(0, 12).map((photo) => (
               <div
                 key={photo.id}
                 className="relative group aspect-square rounded-lg overflow-hidden bg-zinc-900"
@@ -48,18 +53,17 @@ export default async function Gallery() {
             </p>
           )}
         </div>
-      </div>
-     {/* BOUTON VOIR PLUS */}
-      <div className="mt-8 text-center">
-        <Link
-          href="/gallery"
-          className="inline-block px-6 py-3 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition"
-        >
-          Voir plus de photos
-        </Link>
-      </div>
 
+        {/* BOUTON VOIR PLUS */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/gallery"
+            className="inline-block px-6 py-3 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition"
+          >
+            Voir plus de photos
+          </Link>
+        </div>
+      </div>
     </section>
-
   )
 }

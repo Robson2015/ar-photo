@@ -49,17 +49,55 @@ export default function Contact() {
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <Mail className="h-6 w-6 text-white/60" />
-                <span>robson201445@gmail.com</span>
+                <a
+                  href="mailto:robson201445@gmail.com"
+                  className="text-white hover:underline"
+                >
+                  robson201445@gmail.com
+                </a>
               </div>
+
               <div className="flex items-center gap-4">
                 <MapPin className="h-6 w-6 text-white/60" />
                 <span>AKD III 194 Alakamisy Fenoarivo</span>
               </div>
+
               <div className="flex items-center gap-4">
                 <Instagram className="h-6 w-6 text-white/60" />
-                <span>@andryrobson</span>
+                <a
+                  href="https://www.instagram.com/andryrobson"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:underline"
+                >
+                  @andryrobson
+                </a>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5 text-white/60"
+                >
+                  <path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.78 19.78 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.12.81.31 1.6.57 2.36a2 2 0 0 1-.45 2.11L9.91 11a16 16 0 0 0 6.09 6.09l1.81-1.81a2 2 0 0 1 2.11-.45c.76.26 1.55.45 2.36.57a2 2 0 0 1 1.72 2z" />
+                </svg>
+                <a
+                  href="tel:0344562113"
+                  className="text-white hover:underline"
+                >
+                  (+261) 34 45 621 13
+                </a>
               </div>
             </div>
+
           </div>
 
           {/* FORMULAIRE */}

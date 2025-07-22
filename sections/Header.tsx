@@ -70,7 +70,7 @@ export default function Header() {
         <Link href="/" onClick={() => setOpen(false)} className="text-white text-lg">Accueil</Link>
         <Link href="/gallery" onClick={() => setOpen(false)} className="text-white text-lg">Galerie</Link>
         <Link href="/about" onClick={() => setOpen(false)} className="text-white text-lg">À propos</Link>
-        <Button variant="outline" size="sm" className="!text-black hidden  md:inline-block">
+        <Button variant="outline" size="sm" className="!text-black">
         <Link href="/contact" className="text-sm font-medium hover:text-white/70"><span className="!text-black">Me contacter </span> </Link>       
       </Button>
       </div>

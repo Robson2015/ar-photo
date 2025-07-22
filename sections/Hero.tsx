@@ -20,7 +20,7 @@
              Capturer des moments inoubliables
             </h1>
             <p className="mt-4 max-w-md text-lg text-white/90">
-              Photographie professionnelle pour vos événements spéciaux, portraits et paysages
+            Photographie par passion pour vos événements spéciaux, portraits et paysages
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button size="lg" className="rounded-full">
@@ -28,7 +28,7 @@
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
               <Button variant="outline" size="lg" className="rounded-full bg-transparent">
-                Me contacter
+                <Link href="/contact">Me contacter</Link>
               </Button>
             </div>
           </div>
