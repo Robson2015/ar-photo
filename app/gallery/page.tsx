@@ -95,6 +95,7 @@ export default function GalleryPage() {
           </div>
 
           {/* Galerie */}
+          {photos.length > 0 ? (
           <div className="columns-1 sm:columns-2 lg:columns-5 gap-4 space-y-4">
             {photos.map((photo, i) => (
               <div
@@ -119,6 +120,13 @@ export default function GalleryPage() {
               </div>
             ))}
           </div>
+          ) : (
+            <div className="text-center text-white text-md py-20">
+              On n' a pas encore d’image dans cette catégorie.
+            </div>
+          )}
+
+
 
           {/* Lightbox */}
           <Lightbox

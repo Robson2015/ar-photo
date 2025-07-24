@@ -51,7 +51,7 @@ export default function Category() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h3 className="text-md font-bold">{category.name}</h3>
+                <h3 className="text-sm font-bold">{category.name}</h3>
               </div>
             </Link>
           ))}
