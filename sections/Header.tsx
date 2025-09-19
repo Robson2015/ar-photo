@@ -14,6 +14,7 @@ export default function Header() {
     <header className="fixed w-full md:sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-black/80 px-4 py-4 backdrop-blur-sm">
       {/* Logo */}
       <div className="flex items-center gap-2">
+      <Link href="/" onClick={() => setOpen(false)}>
         <Image
           src="/ar-photo.png"
           alt="logo"
@@ -21,6 +22,7 @@ export default function Header() {
           height={80}
           className="object-cover"
         />
+        </Link>
       </div>
 
       {/* Menu Desktop */}
@@ -70,7 +72,7 @@ export default function Header() {
         <Link href="/" onClick={() => setOpen(false)} className="text-white text-lg">Accueil</Link>
         <Link href="/gallery" onClick={() => setOpen(false)} className="text-white text-lg">Galerie</Link>
         <Link href="/about" onClick={() => setOpen(false)} className="text-white text-lg">À propos</Link>
-        <Button variant="outline" size="sm" className="!text-black hidden  md:inline-block">
+        <Button variant="outline" size="sm" className="!text-black">
         <Link href="/contact" className="text-sm font-medium hover:text-white/70"><span className="!text-black">Me contacter </span> </Link>       
       </Button>
       </div>

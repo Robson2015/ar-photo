@@ -37,7 +37,7 @@ export default function Category() {
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-12 text-center">
           Catégories
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-9 gap-8">
           {categories.map((category) => (
             <Link
               key={category.id}
@@ -51,7 +51,7 @@ export default function Category() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h3 className="text-2xl font-bold">{category.name}</h3>
+                <h3 className="text-sm font-bold">{category.name}</h3>
               </div>
             </Link>
           ))}
