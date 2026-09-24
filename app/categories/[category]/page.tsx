@@ -44,7 +44,7 @@ export default async function CategoryPage({
                         className="group relative aspect-square overflow-hidden rounded-lg"
                     >
                         <Image
-                        src={`https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`}
+                        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
                         alt={photo.title}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"

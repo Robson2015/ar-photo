@@ -1,33 +1,23 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import Image from "next/image"
-import { createClient } from "@supabase/supabase-js"
 import Header from "@/sections/Header"
 import Footer from "@/sections/Footer"
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import { supabase } from "@/lib/supabase/server"
 
-export default function ContactPage() {
-  const [about, setAbout] = useState<any>(null)
+export const revalidate = 60
 
-  useEffect(() => {
-    const fetchAbout = async () => {
-      const { data, error } = await supabase.from("about").select("*").single()
-      if (!error) setAbout(data)
-      else console.error("Erreur Supabase :", error.message)
-    }
+export default async function AboutPage() {
+  const { data: about, error } = await supabase
+    .from("about")
+    .select("title, image, content_1, content_2, content_3")
+    .order("id", { ascending: true })
+    .limit(1)
+    .maybeSingle()
 
-    fetchAbout()
-  }, [])
-
-  if (!about) {
+  if (error || !about) {
     return (
-      <div className="text-center text-white py-20">
-        Chargement en cours...
+      <div className="flex min-h-screen items-center justify-center bg-black px-6 text-center text-white">
+        <p>La présentation est momentanément indisponible.</p>
       </div>
     )
   }

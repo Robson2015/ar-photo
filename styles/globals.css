@@ -3,7 +3,64 @@
 @tailwind utilities;
 
 body {
-  font-family:"Poppins", Arial, Helvetica, sans-serif;
+  background: #0b0b0a;
+  color: #f5f1e8;
+  font-family: "Outfit", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #d6b36a;
+  color: #0b0b0a;
+}
+
+.display-font {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.eyebrow {
+  color: #d6b36a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.reveal-up {
+  animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-delay-1 { animation-delay: 0.12s; }
+.reveal-delay-2 { animation-delay: 0.24s; }
+.reveal-delay-3 { animation-delay: 0.36s; }
+
+.hero-slide {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.2s ease, transform 7s ease-out;
+}
+
+.hero-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-slide-hidden {
+  pointer-events: none;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {
@@ -92,3 +149,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.yarl__slide_description{
+  text-align: center !important;
+}
+

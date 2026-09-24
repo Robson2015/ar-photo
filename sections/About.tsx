@@ -1,41 +1,26 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import Image from "next/image"
-import { createClient } from "@supabase/supabase-js"
-import Header from "@/sections/Header"
-import Footer from "@/sections/Footer"
+import { supabase } from "@/lib/supabase/server"
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+export const revalidate = 60
 
-    
-export default function About() {   
-  const [about, setAbout] = useState<any>(null)
+export default async function About() {
+  const { data: about, error } = await supabase
+    .from("about")
+    .select("title, image, content_1, content_2, content_3")
+    .order("id", { ascending: true })
+    .limit(1)
+    .maybeSingle()
 
-    useEffect(() => {
-      const fetchAbout = async () => {
-        const { data, error } = await supabase.from("about").select("*").single()
-        if (!error) setAbout(data)
-        else console.error("Erreur Supabase :", error.message)
-      }
-
-      fetchAbout()
-    }, [])
-
-    if (!about) {
-      return (
-        <div className="text-center text-white py-20">
-          Chargement en cours...
-        </div>
-      )
-    }
+  if (error || !about) {
+    return (
+      <section id="about" className="px-4 py-16 text-center text-white sm:px-6 lg:px-8">
+        <p>La présentation est momentanément indisponible.</p>
+      </section>
+    )
+  }
   
     return (
-    <>        
-        <section id="about" className="py-16 px-4 sm:px-6 lg:px-8">
+      <section id="about" className="px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
             <div className="relative aspect-square overflow-hidden rounded-lg">
@@ -55,8 +40,7 @@ export default function About() {
           </div>
         </div>
         </section>
-    </>
-    )
+      )
 }
     
 

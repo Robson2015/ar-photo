@@ -18,29 +18,36 @@ export default async function Gallery() {
   }
 
   return (
-    <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="border-t border-white/10 bg-[#0b0b0a] px-5 py-24 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-3xl font-bold text-center mb-12">Galerie</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-4">Sélection récente</p>
+            <h2 className="display-font text-5xl font-semibold leading-none sm:text-7xl">Galerie</h2>
+          </div>
+          <p className="hidden max-w-xs text-right text-sm leading-6 text-white/50 sm:block">Des images pensées pour garder une trace sensible des instants qui comptent.</p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {photos && photos.length > 0 ? (
             photos.slice(0,12 ).map((photo) => (
               <div
                 key={photo.id}
-                className="relative group aspect-square rounded-lg overflow-hidden bg-zinc-900"
+                className="group relative aspect-[4/5] overflow-hidden bg-[#171715] sm:aspect-square"
               >
+                
                 <Image
-                  src={`https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`}
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
                   alt={photo.title}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover transition duration-700 ease-out group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                  <h3 className="text-xl font-semibold">{photo.title}</h3>
-                  <p className="text-sm text-white/80">{photo.description}</p>
+                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <h3 className="text-xl font-semibold text-white">{photo.title}</h3>
+                  <p className="mt-1 text-sm text-white/70">{photo.description}</p>
                   <Link
                     href={`/photos/${photo.id}`}
-                    className="mt-2 inline-flex items-center text-sm text-yellow-400 hover:underline"
+                    className="mt-3 inline-flex items-center text-xs font-bold uppercase tracking-[0.15em] text-[#d6b36a]"
                   >
                     Voir plus <ChevronRight className="ml-1 h-4 w-4" />
                   </Link>
@@ -55,10 +62,10 @@ export default async function Gallery() {
         </div>
 
         {/* BOUTON VOIR PLUS */}
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link
             href="/gallery"
-            className="inline-block px-6 py-3 bg-white text-black font-semibold rounded hover:bg-zinc-200 transition"
+            className="inline-flex rounded-full border border-white/20 px-7 py-3 text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:border-[#d6b36a] hover:text-[#d6b36a]"
           >
             Voir plus de photos
           </Link>

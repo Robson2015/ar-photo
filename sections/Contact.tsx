@@ -37,14 +37,17 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="bg-[#0b0b0a] px-5 py-24 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-12 text-center">Contact</h2>
+        <div className="mb-12">
+          <p className="eyebrow mb-4">Un projet en tête ?</p>
+          <h2 className="display-font text-5xl font-semibold leading-none sm:text-7xl">Me contacter</h2>
+        </div>
         <div className="grid gap-12 lg:grid-cols-2">
           {/* INFOS */}
           <div>
-            <p className="text-lg text-white/80 mb-8">
-              Vous souhaitez réserver une séance photo ou discuter d'un projet ? N'hésitez pas à me contacter.
+            <p className="mb-8 max-w-md text-lg leading-8 text-white/65">
+              Vous souhaitez discuter ? N'hésitez pas à me contacter.
             </p>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
@@ -167,7 +170,7 @@ export default function Contact() {
               ></textarea>
             </div>
 
-            <Button type="submit" size="lg" className="w-full sm:w-auto">
+            <Button type="submit" size="lg" className="w-full rounded-full bg-[#d6b36a] px-8 text-[#0b0b0a] hover:bg-[#e4c47f] sm:w-auto">
               Envoyer le message
             </Button>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useTransition } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
@@ -29,36 +29,43 @@ export default function GalleryPage() {
   const [photos, setPhotos] = useState<any[]>([])
   const [categories, setCategories] = useState<any[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [isPending, startTransition] = useTransition()
+  const [isLoading, setIsLoading] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const [index, setIndex] = useState(0)
 
   // Charger les catégories
   useEffect(() => {
-    const fetchCategories = async () => {
-      const { data, error } = await supabase.from("categories").select("*").order("name")
-      if (data) setCategories(data)
+    const fetchGalleryData = async () => {
+      const [{ data: categoryData }, { data: photoData }] = await Promise.all([
+        supabase.from("categories").select("id, name, slug").order("name"),
+        supabase
+          .from("photos")
+          .select("id, title, description, filename, category")
+          .order("id", { ascending: false }),
+      ])
+
+      if (categoryData) setCategories(categoryData)
+      if (photoData) setPhotos(photoData)
+      setIsLoading(false)
     }
 
-    fetchCategories()
+    fetchGalleryData()
   }, [])
 
-  // Charger les photos filtrées
-  useEffect(() => {
-    const fetchPhotos = async () => {
-      const query = supabase.from("photos").select("*").order("id", { ascending: false })
-      if (selectedCategory !== "all") {
-        query.eq("category", selectedCategory)
-      }
+  const filteredPhotos = selectedCategory === "all"
+    ? photos
+    : photos.filter((photo) => photo.category === selectedCategory)
 
-      const { data, error } = await query
-      if (!error) setPhotos(data || [])
-    }
+  const handleCategoryChange = (category: string) => {
+    startTransition(() => {
+      setSelectedCategory(category)
+      setIndex(0)
+    })
+  }
 
-    fetchPhotos()
-  }, [selectedCategory])
-
-  const slides = photos.map((photo) => ({
-    src: `https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`,
+  const slides = filteredPhotos.map((photo) => ({
+    src: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`,
     alt: photo.title,
     description: photo.description
   }))
@@ -74,8 +81,9 @@ export default function GalleryPage() {
           {/* Filtre catégorie */}
           <div className="flex justify-center flex-wrap gap-4 mb-10">
             <button
-              onClick={() => setSelectedCategory("all")}
-              className={`px-4 py-2 rounded-full border ${
+              onClick={() => handleCategoryChange("all")}
+              aria-pressed={selectedCategory === "all"}
+              className={`rounded-full border px-4 py-2 transition-colors duration-200 ${
                 selectedCategory === "all" ? "bg-white text-black" : "border-white text-white"
               }`}
             >
@@ -84,8 +92,9 @@ export default function GalleryPage() {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-4 py-2 rounded-full border ${
+                onClick={() => handleCategoryChange(cat.slug)}
+                aria-pressed={selectedCategory === cat.slug}
+                className={`rounded-full border px-4 py-2 transition-colors duration-200 ${
                   selectedCategory === cat.slug ? "bg-white text-black" : "border-white text-white"
                 }`}
               >
@@ -95,9 +104,15 @@ export default function GalleryPage() {
           </div>
 
           {/* Galerie */}
-          {photos.length > 0 ? (
-          <div className="columns-1 sm:columns-2 lg:columns-5 gap-4 space-y-4">
-            {photos.map((photo, i) => (
+          {isLoading ? (
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4" aria-label="Chargement de la galerie">
+              {Array.from({ length: 8 }, (_, skeletonIndex) => (
+                <div key={skeletonIndex} className="aspect-[4/5] animate-pulse bg-white/10" />
+              ))}
+            </div>
+          ) : filteredPhotos.length > 0 ? (
+          <div className={`columns-1 gap-4 space-y-4 transition-opacity duration-200 sm:columns-2 lg:columns-5 ${isPending ? "opacity-60" : "opacity-100"}`}>
+            {filteredPhotos.map((photo, i) => (
               <div
                 key={photo.id}
                 className="break-inside-avoid overflow-hidden rounded-lg relative group bg-zinc-900 cursor-pointer"
@@ -107,7 +122,7 @@ export default function GalleryPage() {
                 }}
               >
                 <Image
-                  src={`https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`}
+                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
                   alt={photo.title}
                   width={800}
                   height={600}

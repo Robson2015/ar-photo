@@ -20,7 +20,7 @@ export default async function PhotoPage({ params }: { params: { id: string } }) 
     )
   }
 
-  const imageUrl = `https://bjrtzxwokhhcuagonduz.supabase.co/storage/v1/object/public/photos/${photo.filename}`
+  const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
