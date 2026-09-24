@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@supabase/supabase-js"
+import { getPhotoUrl } from "@/lib/storage"
 
 type Category = {
   id: number
@@ -169,7 +170,7 @@ export default function AdminPage() {
 
       if (categoryImageFile) {
         const path = await uploadFileToBucket(categoryImageFile, "categories", categorySlug)
-        uploadedImageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${path}`
+        uploadedImageUrl = getPhotoUrl(path)
       } else if (currentCategory) {
         uploadedImageUrl = currentCategory.image || null
       }
@@ -487,7 +488,7 @@ export default function AdminPage() {
                     {photos.slice(0, 6).map((photo) => (
                       <div key={photo.id} className="overflow-hidden rounded-xl border border-white/10 bg-black/20">
                           <img
-                            src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
+                            src={getPhotoUrl(photo.filename)}
                           alt={photo.title}
                           className="h-36 w-full object-cover"
                         />
@@ -782,7 +783,7 @@ export default function AdminPage() {
                               <tr key={photo.id} className="border-t border-white/10 bg-black/10">
                                 <td className="px-4 py-3">
                                   <img
-                                    src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
+                                    src={getPhotoUrl(photo.filename)}
                                     alt={photo.title}
                                     className="h-16 w-16 rounded-lg object-cover"
                                   />

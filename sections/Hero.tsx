@@ -60,6 +60,7 @@ export default function Hero() {
           fill
           priority={index === 0}
           sizes="100vw"
+          quality={70}
           className={`hero-slide object-cover ${index === activeSlide ? "hero-slide-active" : "hero-slide-hidden"}`}
         />
       ))}

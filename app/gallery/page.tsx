@@ -7,6 +7,7 @@ import { ChevronRight } from "lucide-react"
 import Header from "@/sections/Header"
 import Footer from "@/sections/Footer"
 import { createClient } from "@supabase/supabase-js"
+import { getPhotoUrl } from "@/lib/storage"
 
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
@@ -65,7 +66,7 @@ export default function GalleryPage() {
   }
 
   const slides = filteredPhotos.map((photo) => ({
-    src: `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`,
+    src: getPhotoUrl(photo.filename),
     alt: photo.title,
     description: photo.description
   }))
@@ -122,7 +123,7 @@ export default function GalleryPage() {
                 }}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
+                  src={getPhotoUrl(photo.filename)}
                   alt={photo.title}
                   width={800}
                   height={600}

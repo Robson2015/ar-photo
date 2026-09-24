@@ -49,6 +49,8 @@ export default function Category() {
                 src={category.image || "/placeholder.svg"}
                 alt={category.name}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                quality={75}
                 className="object-cover transition duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-4">

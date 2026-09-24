@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight } from "lucide-react"
 import { supabase } from "@/lib/supabase/server"
+import { getPhotoUrl } from "@/lib/storage"
 
 // ➕ Cette ligne indique à Next.js de revalider les données toutes les 60 secondes
 export const revalidate = 0
@@ -36,11 +37,12 @@ export default async function Gallery() {
               >
                 
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
+                  src={getPhotoUrl(photo.filename)}
                   alt={photo.title}
                   fill
                   className="object-cover transition duration-700 ease-out group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  quality={75}
                 />
                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <h3 className="text-xl font-semibold text-white">{photo.title}</h3>

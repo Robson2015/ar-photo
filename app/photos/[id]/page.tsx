@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Share } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabase/server"
+import { getPhotoUrl } from "@/lib/storage"
 
 export default async function PhotoPage({ params }: { params: { id: string } }) {
   const { data: photo, error } = await supabase
@@ -20,7 +21,7 @@ export default async function PhotoPage({ params }: { params: { id: string } }) 
     )
   }
 
-  const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`
+  const imageUrl = getPhotoUrl(photo.filename)
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">

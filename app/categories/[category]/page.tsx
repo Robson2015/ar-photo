@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight, Instagram, Mail, MapPin } from "lucide-react"
 import { supabase } from "@/lib/supabase/server"
+import { getPhotoUrl } from "@/lib/storage"
 
 import { Button } from "@/components/ui/button"
 
@@ -44,7 +45,7 @@ export default async function CategoryPage({
                         className="group relative aspect-square overflow-hidden rounded-lg"
                     >
                         <Image
-                        src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/photos/${photo.filename}`}
+                        src={getPhotoUrl(photo.filename)}
                         alt={photo.title}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -28,6 +28,8 @@ export default async function About() {
                 src={about.image}
                 alt="Portrait du photographe"
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                quality={75}
                 className="object-cover"
               />
             </div>
