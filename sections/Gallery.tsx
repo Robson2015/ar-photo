@@ -28,7 +28,7 @@ export default async function Gallery() {
           </div>
           <p className="hidden max-w-xs text-right text-sm leading-6 text-white/50 sm:block">Des images pensées pour garder une trace sensible des instants qui comptent.</p>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-4">
           {photos && photos.length > 0 ? (
             photos.slice(0,12 ).map((photo) => (
               <div
@@ -46,12 +46,12 @@ export default async function Gallery() {
                 />
                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <h3 className="text-xl font-semibold text-white">{photo.title}</h3>
-                  <p className="mt-1 text-sm text-white/70">{photo.description}</p>
+                  <p className="hidden mt-1 text-sm text-white/70">{photo.description}</p>
                   <Link
                     href={`/photos/${photo.id}`}
                     className="mt-3 inline-flex items-center text-xs font-bold uppercase tracking-[0.15em] text-[#d6b36a]"
                   >
-                    Voir plus <ChevronRight className="ml-1 h-4 w-4" />
+                    Voir <ChevronRight className="ml-1 h-4 w-4" />
                   </Link>
                 </div>
               </div>

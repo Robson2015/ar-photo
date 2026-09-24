@@ -33,16 +33,16 @@ export default async function CategoryPage({
 
         <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="min-h-screen bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+            <div className="mx-auto">
                 <h1 className="text-4xl font-bold mb-8 capitalize">{category}</h1>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3">
                 {photos && photos.length > 0 ? (
                     photos.map((photo) => (
                     <Link
                         key={photo.id}
                         href={`/photos/${photo.id}`}
-                        className="group relative aspect-square overflow-hidden rounded-lg"
+                        className="group relative aspect-square overflow-hidden"
                     >
                         <Image
                         src={getPhotoUrl(photo.filename)}
