@@ -38,7 +38,7 @@ export default function Category() {
           <p className="eyebrow mb-4">Explorer par univers</p>
           <h2 className="display-font text-5xl font-semibold leading-none sm:text-7xl">Catégories</h2>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           {categories.map((category) => (
             <Link
               key={category.id}

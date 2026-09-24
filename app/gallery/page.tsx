@@ -76,7 +76,7 @@ export default function GalleryPage() {
       <Header />
 
       <main className="px-4 py-20 sm:px-6 lg:px-8 bg-black text-white">
-        <div className="mt-6 mx-auto max-w-7xl">
+        <div className="mt-6 mx-auto w-100">
           <h1 className="text-4xl font-bold text-center mb-6">Galerie complète</h1>
 
           {/* Filtre catégorie */}
@@ -106,17 +106,17 @@ export default function GalleryPage() {
 
           {/* Galerie */}
           {isLoading ? (
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4" aria-label="Chargement de la galerie">
+            <div className="grid grid-cols-2 gap-1 lg:grid-cols-4" aria-label="Chargement de la galerie">
               {Array.from({ length: 8 }, (_, skeletonIndex) => (
                 <div key={skeletonIndex} className="aspect-[4/5] animate-pulse bg-white/10" />
               ))}
             </div>
           ) : filteredPhotos.length > 0 ? (
-          <div className={`columns-1 gap-4 space-y-4 transition-opacity duration-200 sm:columns-2 lg:columns-5 ${isPending ? "opacity-60" : "opacity-100"}`}>
+          <div className={`columns-1 gap-0 transition-opacity duration-200 sm:columns-2 lg:columns-4 ${isPending ? "opacity-60" : "opacity-100"}`}>
             {filteredPhotos.map((photo, i) => (
               <div
                 key={photo.id}
-                className="break-inside-avoid overflow-hidden rounded-lg relative group bg-zinc-900 cursor-pointer"
+                className="break-inside-avoid overflow-hidden relative group bg-zinc-900 cursor-pointer"
                 onClick={() => {
                   setIndex(i)
                   setIsOpen(true)
@@ -129,10 +129,10 @@ export default function GalleryPage() {
                   height={600}
                   className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+               <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
                   <h3 className="text-lg font-semibold">{photo.title}</h3>
                   <p className="text-sm text-white/80">{photo.description}</p>
-                </div>
+                </div> 
               </div>
             ))}
           </div>
