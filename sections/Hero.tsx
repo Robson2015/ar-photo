@@ -11,17 +11,17 @@ const slides = [
 
   {
     src: "/photo2.jpg",
-    alt: "Couple pendant une cérémonie de mariage",
-    label: "Mariage | Émotion",
+    alt: "Paysage ",
+    label: "Paysage | Madagascar",
   },
     {
     src: "/photo1.jpg",
-    alt: "Portrait photographique principal",
+    alt: "Paysage photographique avec des arbres et un ciel bleu",
     label: "Photographie | Madagascar",
   },
     {
     src: "/photo3.jpg",
-    alt: "Paysage lumineux au lever du soleil",
+    alt: "Paysage photographique avec des arbres et un ciel bleu",
     label: "Paysage | Lumière",
   },
 
